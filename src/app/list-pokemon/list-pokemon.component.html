@@ -1,0 +1,21 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 pokemonList">
+  <figure *ngFor="let pokemon of pokemonList"
+    class="md:flex max-w-5xl bg-slate-100 rounded-xl p-8 md:p-0 dark:bg-slate-800 card-content" pkmnBorderCard (click)="goToPokemon(pokemon)">
+    <div class="md:flex">
+      <div class="md:shrink-0">
+        <img class="h-48 w-full object-cover md:h-full md:w-48" src="{{pokemon.image.hires}}" alt="pokemon image" />
+      </div>
+      <div class="p-8">
+        <div class="uppercase tracking-wide text-sm text-indigo-500 font-semibold">
+          {{pokemon.name.french}}
+        </div>
+        <p class="mt-2 text-slate-500">
+          {{pokemon.firstSeen| date:"dd/MM/yyyy"}}
+        </p>
+        <span *ngFor="let type of pokemon.type" [ngClass]="type | pokemonTypeColor" class="mb-2">
+          {{type}}
+        </span>
+      </div>
+    </div>
+  </figure>
+</div>
