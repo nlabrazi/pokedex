@@ -30,7 +30,7 @@ export class BorderCardDirective {
   }
 
   private setBorder(color: string) {
-    this.el.nativeElement.style.border = `solid 4px ${color}`;
+    this.el.nativeElement.style.border = `solid 1px ${color}`;
   }
 
 }
