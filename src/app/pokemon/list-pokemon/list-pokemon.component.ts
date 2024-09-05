@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import Pokemon from '../../models/pokemon';
 import { PokemonTypeColorPipe } from "../pokemon-type-color.pipe";
 import { BorderCardDirective } from '../border-card.directive';
-import { PokemonService } from '../../services/pokemon.service';
+import { PokemonService } from '../services/pokemon.service';
 
 @Component({
   selector: 'app-list-pokemon',

@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import Pokemon from '../../models/pokemon';
 import { PokemonTypeColorPipe } from "../pokemon-type-color.pipe";
-import { PokemonService } from '../../services/pokemon.service';
+import { PokemonService } from '../services/pokemon.service';
 
 @Component({
   selector: 'app-detail-pokemon',
@@ -14,21 +14,15 @@ import { PokemonService } from '../../services/pokemon.service';
   styles: ``
 })
 export class DetailPokemonComponent implements OnInit {
-
-  pokemonList: Pokemon[];
-  choosenPokemon: Pokemon | undefined;
+  pokemon: Pokemon|undefined
 
   constructor(private route: ActivatedRoute, private router: Router, private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
-    const pokemonId: string | null = this.route.snapshot.paramMap.get('id');
-
-    if (pokemonId) {
-      this.pokemonService.getPokemons().subscribe((data: Pokemon[]) => {
-        this.pokemonList = data;
-        this.choosenPokemon = this.pokemonList.find(choosenPokemon => choosenPokemon.id == +pokemonId)
-      });
-    }
+    const pokemonId = +this.route.snapshot.paramMap.get('id')!;
+    this.pokemonService.getPokemonById(pokemonId).subscribe((pokemon) => {
+      this.pokemon = pokemon;
+    });
   }
 
   goBack() {
