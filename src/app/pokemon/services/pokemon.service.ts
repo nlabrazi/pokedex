@@ -19,10 +19,13 @@ export class PokemonService {
     );
   }
 
-  getPokemonByTypeList(type: string): Observable<Pokemon[]> {
+  getPokemonTypeList(): Observable<string[]> {
     return this.getPokemons().pipe(
-      map((pokemons: Pokemon[]) => pokemons.filter(pokemon => pokemon.type.includes(type))
-      )
+      map((pokemons: Pokemon[]) => {
+        // Extraire les types et les rendre uniques
+        const types = pokemons.flatMap(pokemon => pokemon.types);
+        return Array.from(new Set(types));  // Renvoie les types uniques
+      })
     );
   }
 }

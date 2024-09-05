@@ -36,7 +36,7 @@
         <div class="mb-4">
           <span class="font-bold text-gray-700 dark:text-gray-300">Types:</span>
           <div class="flex items-center mt-2">
-            <span *ngFor="let type of pokemon.type" [ngClass]="type | pokemonTypeColor" class="mr-2">
+            <span *ngFor="let type of pokemon.types" [ngClass]="type | pokemonTypeColor" class="mr-2">
               {{type}}
             </span>
           </div>
