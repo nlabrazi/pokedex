@@ -1,86 +1,184 @@
-<div class="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden">
-  <div class="text-2xl py-4 px-6 bg-blue-500 text-white font-bold text-center uppercase">
-    Editer {{pokemon.name.french}}
+<div
+  class="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-lg overflow-hidden"
+>
+  <div
+    class="text-2xl py-4 px-6 bg-blue-500 text-white font-bold text-center uppercase"
+  >
+    Editer {{ pokemon.name.french }}
   </div>
-  <form [formGroup]="pokemonForm" (ngSubmit)="onSubmit()" class="py-4 px-6" action="" method="POST">
-
+  <form
+    [formGroup]="pokemonForm"
+    (ngSubmit)="onSubmit()"
+    class="py-4 px-6"
+    action=""
+    method="POST"
+  >
     <!-- Champ Name -->
     <div class="mb-4">
       <label class="block text-gray-700 font-bold mb-2" for="name">Nom</label>
       <input
-        [ngClass]="{'border-red-600': pokemonForm.controls['name'].invalid && pokemonForm.controls['name'].touched, 'border-gray-300': pokemonForm.controls['name'].valid || pokemonForm.controls['name'].pristine}"
+        [ngClass]="{
+          'border-red-600':
+            pokemonForm.controls['name'].invalid &&
+            pokemonForm.controls['name'].touched,
+          'border-gray-300':
+            pokemonForm.controls['name'].valid ||
+            pokemonForm.controls['name'].pristine,
+        }"
         class="block w-full py-2 px-3 text-sm text-gray-900 bg-transparent rounded-lg border appearance-none focus:outline-none focus:ring-0 peer focus:border-blue-600"
-        formControlName="name" id="name" type="text" placeholder="Entrez le nom" />
-      <div *ngIf="pokemonForm.controls['name'].invalid && pokemonForm.controls['name'].touched">
-        <p class="mt-2 text-xs text-red-600"><span class="font-medium">Oh mince!</span> Le nom du Pokémon est requis
-          (1-25).
+        formControlName="name"
+        id="name"
+        type="text"
+        placeholder="Entrez le nom"
+      />
+      <div
+        *ngIf="
+          pokemonForm.controls['name'].invalid &&
+          pokemonForm.controls['name'].touched
+        "
+      >
+        <p class="mt-2 text-xs text-red-600">
+          <span class="font-medium">Oh mince!</span> Le nom du Pokémon est
+          requis (1-25).
         </p>
       </div>
     </div>
 
     <!-- Champ HPs -->
     <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2" for="HPs">Points de vie</label>
+      <label class="block text-gray-700 font-bold mb-2" for="HPs"
+        >Points de vie</label
+      >
       <input
-        [ngClass]="{'border-red-600': pokemonForm.controls['HPs'].invalid && pokemonForm.controls['HPs'].touched, 'border-gray-300': pokemonForm.controls['HPs'].valid || pokemonForm.controls['HPs'].pristine}"
+        [ngClass]="{
+          'border-red-600':
+            pokemonForm.controls['HPs'].invalid &&
+            pokemonForm.controls['HPs'].touched,
+          'border-gray-300':
+            pokemonForm.controls['HPs'].valid ||
+            pokemonForm.controls['HPs'].pristine,
+        }"
         class="block w-full py-2 px-3 text-sm text-gray-900 bg-transparent rounded-lg border appearance-none focus:outline-none focus:ring-0 peer focus:border-blue-600"
-        formControlName="HPs" id="HPs" type="text" placeholder="Entrez les points de vie" />
-      <div *ngIf="pokemonForm.controls['HPs'].invalid && pokemonForm.controls['HPs'].touched">
-        <p class="mt-2 text-xs text-red-600"><span class="font-medium">Oh mince!</span> Les points de vie du Pokémon
-          sont
-          requis (0-999).</p>
+        formControlName="HPs"
+        id="HPs"
+        type="text"
+        placeholder="Entrez les points de vie"
+      />
+      <div
+        *ngIf="
+          pokemonForm.controls['HPs'].invalid &&
+          pokemonForm.controls['HPs'].touched
+        "
+      >
+        <p class="mt-2 text-xs text-red-600">
+          <span class="font-medium">Oh mince!</span> Les points de vie du
+          Pokémon sont requis (0-999).
+        </p>
       </div>
     </div>
 
     <!-- Champ Attack -->
     <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2" for="Attack">Attaque</label>
+      <label class="block text-gray-700 font-bold mb-2" for="Attack"
+        >Attaque</label
+      >
       <input
-        [ngClass]="{'border-red-600': pokemonForm.controls['Attack'].invalid && pokemonForm.controls['Attack'].touched, 'border-gray-300': pokemonForm.controls['Attack'].valid || pokemonForm.controls['Attack'].pristine}"
+        [ngClass]="{
+          'border-red-600':
+            pokemonForm.controls['Attack'].invalid &&
+            pokemonForm.controls['Attack'].touched,
+          'border-gray-300':
+            pokemonForm.controls['Attack'].valid ||
+            pokemonForm.controls['Attack'].pristine,
+        }"
         class="block w-full py-2 px-3 text-sm text-gray-900 bg-transparent rounded-lg border appearance-none focus:outline-none focus:ring-0 peer focus:border-blue-600"
-        formControlName="Attack" id="Attack" type="text" placeholder="Entrez les points d'attaque" />
-      <div *ngIf="pokemonForm.controls['Attack'].invalid && pokemonForm.controls['Attack'].touched">
-        <p class="mt-2 text-xs text-red-600"><span class="font-medium">Oh mince!</span> Les points d'attaque du Pokémon
-          sont requis (0-999).</p>
+        formControlName="Attack"
+        id="Attack"
+        type="text"
+        placeholder="Entrez les points d'attaque"
+      />
+      <div
+        *ngIf="
+          pokemonForm.controls['Attack'].invalid &&
+          pokemonForm.controls['Attack'].touched
+        "
+      >
+        <p class="mt-2 text-xs text-red-600">
+          <span class="font-medium">Oh mince!</span> Les points d'attaque du
+          Pokémon sont requis (0-999).
+        </p>
       </div>
     </div>
 
     <!-- Champ Defense -->
     <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2" for="Defense">Défense</label>
+      <label class="block text-gray-700 font-bold mb-2" for="Defense"
+        >Défense</label
+      >
       <input
-        [ngClass]="{'border-red-600': pokemonForm.controls['Defense'].invalid && pokemonForm.controls['Defense'].touched, 'border-gray-300': pokemonForm.controls['Defense'].valid || pokemonForm.controls['Defense'].pristine}"
+        [ngClass]="{
+          'border-red-600':
+            pokemonForm.controls['Defense'].invalid &&
+            pokemonForm.controls['Defense'].touched,
+          'border-gray-300':
+            pokemonForm.controls['Defense'].valid ||
+            pokemonForm.controls['Defense'].pristine,
+        }"
         class="block w-full py-2 px-3 text-sm text-gray-900 bg-transparent rounded-lg border appearance-none focus:outline-none focus:ring-0 peer focus:border-blue-600"
-        formControlName="Defense" id="Defense" type="text" placeholder="Entrez les points de défense" />
-      <div *ngIf="pokemonForm.controls['Defense'].invalid && pokemonForm.controls['Defense'].touched">
-        <p class="mt-2 text-xs text-red-600"><span class="font-medium">Oh mince!</span> Les points de défense du Pokémon
-          sont requis (0-999).</p>
+        formControlName="Defense"
+        id="Defense"
+        type="text"
+        placeholder="Entrez les points de défense"
+      />
+      <div
+        *ngIf="
+          pokemonForm.controls['Defense'].invalid &&
+          pokemonForm.controls['Defense'].touched
+        "
+      >
+        <p class="mt-2 text-xs text-red-600">
+          <span class="font-medium">Oh mince!</span> Les points de défense du
+          Pokémon sont requis (0-999).
+        </p>
       </div>
     </div>
 
     <!-- Champ Types -->
     <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2" for="Types">Types</label>
+      <label class="block text-gray-700 font-bold mb-2" for="Types"
+        >Types</label
+      >
       <select
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="Types" name="Types" *ngFor="let type of pokemon.types" [ngClass]="type | pokemonTypeColor">
-        <option value="">{{type}}</option>
+        id="Types"
+        name="Types"
+        *ngFor="let type of pokemon.types"
+        [ngClass]="type | pokemonTypeColor"
+      >
+        <option value="">{{ type }}</option>
       </select>
     </div>
 
     <!-- Champ Description -->
     <div class="mb-4">
-      <label class="block text-gray-700 font-bold mb-2" for="Description">Description</label>
+      <label class="block text-gray-700 font-bold mb-2" for="Description"
+        >Description</label
+      >
       <textarea
         class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-        id="Description" rows="4" [placeholder]="pokemon.description || 'Entrer une description'"></textarea>
+        id="Description"
+        rows="4"
+        [placeholder]="pokemon.description || 'Entrer une description'"
+      ></textarea>
     </div>
 
     <!-- Submit -->
     <div class="flex items-center justify-center mb-4">
-      <button [disabled]="!pokemonForm.valid"
+      <button
+        [disabled]="!pokemonForm.valid"
         class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-        type="submit">
+        type="submit"
+      >
         Enregistrer
       </button>
     </div>

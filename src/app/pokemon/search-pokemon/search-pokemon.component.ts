@@ -1,12 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-search-pokemon',
+  selector: "app-search-pokemon",
   standalone: true,
   imports: [],
-  templateUrl: './search-pokemon.component.html',
-  styles: ``
+  templateUrl: "./search-pokemon.component.html",
+  styles: ``,
 })
-export class SearchPokemonComponent {
-
-}
+export class SearchPokemonComponent {}

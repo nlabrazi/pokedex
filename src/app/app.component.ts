@@ -1,13 +1,13 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import { CommonModule } from '@angular/common';
-import { WindowService } from './pokemon/services/window.service';
+import { Component, HostListener, OnInit } from "@angular/core";
+import { RouterOutlet } from "@angular/router";
+import { CommonModule } from "@angular/common";
+import { WindowService } from "./pokemon/services/window.service";
 
 @Component({
-  selector: 'app-root',
+  selector: "app-root",
   standalone: true,
   imports: [RouterOutlet, CommonModule],
-  templateUrl: 'app.component.html',
+  templateUrl: "app.component.html",
 })
 export class AppComponent {
   isMenuOpen = false;
@@ -29,7 +29,7 @@ export class AppComponent {
   }
 
   // HostListener pour suivre les changements de taille de l'écran
-  @HostListener('window:resize', ['$event'])
+  @HostListener("window:resize", ["$event"])
   onResize(event: Event) {
     this.screenWidth = this.windowService.getWindow().innerWidth;
     if (this.screenWidth >= 1024) {

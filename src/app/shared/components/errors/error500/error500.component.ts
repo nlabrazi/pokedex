@@ -1,16 +1,10 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
 
 @Component({
-  selector: 'app-error500',
+  selector: "app-error500",
   standalone: true,
   imports: [],
-  template: `
-    <p>
-      error500 works!
-    </p>
-  `,
-  styles: ``
+  template: ` <p>error500 works!</p> `,
+  styles: ``,
 })
-export class Error500Component {
-
-}
+export class Error500Component {}

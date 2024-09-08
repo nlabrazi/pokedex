@@ -1,68 +1,67 @@
-import { Pipe, PipeTransform } from '@angular/core';
+import { Pipe, PipeTransform } from "@angular/core";
 
 @Pipe({
-  name: 'pokemonTypeColor',
-  standalone: true
+  name: "pokemonTypeColor",
+  standalone: true,
 })
 export class PokemonTypeColorPipe implements PipeTransform {
-
   transform(type: string): string {
     let colorClass: string;
 
     switch (type) {
-      case 'Feu':
-        colorClass = 'bg-feu-500';
+      case "Feu":
+        colorClass = "bg-feu-500";
         break;
-      case 'Eau':
-        colorClass = 'bg-eau-500';
+      case "Eau":
+        colorClass = "bg-eau-500";
         break;
-      case 'Electrik':
-        colorClass = 'bg-electrik-500';
+      case "Electrik":
+        colorClass = "bg-electrik-500";
         break;
-      case 'Plante':
-        colorClass = 'bg-plante-500';
+      case "Plante":
+        colorClass = "bg-plante-500";
         break;
-      case 'Glace':
-        colorClass = 'bg-glace-500';
+      case "Glace":
+        colorClass = "bg-glace-500";
         break;
-      case 'Combat':
-        colorClass = 'bg-combat-500';
+      case "Combat":
+        colorClass = "bg-combat-500";
         break;
-      case 'Poison':
-        colorClass = 'bg-poison-500';
+      case "Poison":
+        colorClass = "bg-poison-500";
         break;
-      case 'Sol':
-        colorClass = 'bg-sol-500';
+      case "Sol":
+        colorClass = "bg-sol-500";
         break;
-      case 'Vol':
-        colorClass = 'bg-vol-500';
+      case "Vol":
+        colorClass = "bg-vol-500";
         break;
-      case 'Psy':
-        colorClass = 'bg-psy-500';
+      case "Psy":
+        colorClass = "bg-psy-500";
         break;
-      case 'Insecte':
-        colorClass = 'bg-insecte-500';
+      case "Insecte":
+        colorClass = "bg-insecte-500";
         break;
-      case 'Roche':
-        colorClass = 'bg-roche-500';
+      case "Roche":
+        colorClass = "bg-roche-500";
         break;
-      case 'Spectre':
-        colorClass = 'bg-spectre-500';
+      case "Spectre":
+        colorClass = "bg-spectre-500";
         break;
-      case 'Dragon':
-        colorClass = 'bg-dragon-500';
+      case "Dragon":
+        colorClass = "bg-dragon-500";
         break;
-      case 'Tenebre':
-        colorClass = 'bg-tenebre-500';
+      case "Tenebre":
+        colorClass = "bg-tenebre-500";
         break;
-      case 'Acier':
-        colorClass = 'bg-acier-500';
+      case "Acier":
+        colorClass = "bg-acier-500";
         break;
-      case 'Fée':
-        colorClass = 'bg-fée-500';
+      case "Fée":
+        colorClass = "bg-fée-500";
         break;
       default:
-        colorClass = 'bg-gray-500';
+        colorClass = "bg-gray-500";
         break;
     }
 
