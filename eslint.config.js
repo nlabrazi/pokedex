@@ -12,9 +12,11 @@ const compat = new FlatCompat({
 export default [
   {
     files: ['src/**/*.ts'],
-    parser: '@typescript-eslint/parser',
-    parserOptions: {
-      project: './tsconfig.json',
+    languageOptions: {
+      parser: '@typescript-eslint/parser',
+      parserOptions: {
+        project: './tsconfig.json',
+      },
     },
     plugins: ['@typescript-eslint', '@angular-eslint'],
     extends: [
