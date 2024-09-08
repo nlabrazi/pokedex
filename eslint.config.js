@@ -1,32 +1,35 @@
 import { fileURLToPath } from 'url';
-import { dirname } from '@angular/compiler-cli';
+import { dirname } from 'path';
 import { FlatCompat } from '@eslint/eslintrc';
+import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
+import angularEslintPlugin from '@angular-eslint/eslint-plugin';
+import typescriptParser from '@typescript-eslint/parser';
 
+// Convertir `import.meta.url` en chemin de fichier
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
+// Compatibilité avec l'ancien système
 const compat = new FlatCompat({
   baseDirectory: __dirname, // Chemin racine du projet
 });
 
 export default [
   {
+    // Appliquer cette configuration à tous les fichiers TypeScript du projet
     files: ['src/**/*.ts'],
     languageOptions: {
-      parser: '@typescript-eslint/parser',
+      parser: typescriptParser, // Utiliser le parser TypeScript
       parserOptions: {
-        project: './tsconfig.json',
+        project: './tsconfig.json', // Utiliser le fichier tsconfig.json pour les règles spécifiques au projet
       },
     },
-    plugins: ['@typescript-eslint', '@angular-eslint'],
-    extends: [
-      'eslint:recommended', // Règles recommandées par ESLint pour JavaScript
-      'plugin:@typescript-eslint/recommended', // Règles recommandées pour TypeScript
-      'plugin:@angular-eslint/recommended', // Règles recommandées pour Angular
-    ],
+    plugins: {
+      '@typescript-eslint': typescriptEslintPlugin, // Plugin TypeScript ESLint
+      '@angular-eslint': angularEslintPlugin, // Plugin Angular ESLint
+    },
     rules: {
-      // Règles de base pour un projet TypeScript/Angular
-      '@typescript-eslint/no-explicit-any': 'warn', // Avertissement lorsque 'any' est utilisé
+      '@typescript-eslint/no-explicit-any': 'warn', // Avertissement si le type "any" est utilisé
       '@angular-eslint/component-selector': [
         'error',
         {
@@ -34,7 +37,7 @@ export default [
           prefix: 'app',
           style: 'kebab-case',
         },
-      ], // Impose une convention pour les sélecteurs de composants Angular
+      ], // Règles pour le nommage des composants Angular
       '@angular-eslint/directive-selector': [
         'error',
         {
@@ -42,7 +45,7 @@ export default [
           prefix: 'app',
           style: 'camelCase',
         },
-      ], // Convention pour les directives Angular
+      ], // Règles pour le nommage des directives Angular
     },
   },
 ];
