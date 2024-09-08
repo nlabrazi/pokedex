@@ -8,7 +8,7 @@ export default interface Pokemon {
   };
   types: string[];
   base: {
-    HP: number;
+    HPs: number;
     Attack: number;
     Defense: number;
     "Sp. Attack": number;
