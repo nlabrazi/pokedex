@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - staging
+      - master
+
+jobs:
+  lint-and-format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run lint
+      run: npm run lint
+
+    - name: Check format
+      run: npm run format
+
+    - name: Deploy to Vercel (on staging branch)
+      if: github.ref == 'refs/heads/staging'
+      run: |
+        npm install -g vercel
+        vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
+
+    - name: Deploy to Vercel (on master branch)
+      if: github.ref == 'refs/heads/master'
+      run: |
+        npm install -g vercel
+        vercel --prod --token ${{ secrets.VERCEL_TOKEN }}
