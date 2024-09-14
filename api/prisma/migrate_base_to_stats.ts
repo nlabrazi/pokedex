@@ -5,32 +5,41 @@ const prisma = new PrismaClient();
 async function migrateData() {
   console.log('Démarrage de la migration des données de Base vers Stats...');
 
-  // Récupérer toutes les entrées de Base
-  const bases = await prisma.base.findMany();
+  // Vérifier si le modèle "Base" existe encore dans la base de données
+  try {
+    const bases = await prisma.$queryRaw`SELECT * FROM "Base" LIMIT 1`;
 
-  for (const base of bases) {
-    // Créer une nouvelle entrée dans Stats avec les mêmes données
-    const stats = await prisma.stats.create({
-      data: {
-        HPs: base.HPs,
-        Attack: base.Attack,
-        Defense: base.Defense,
-        Sp_Attack: base.Sp_Attack,
-        Sp_Defense: base.Sp_Defense,
-        Speed: base.Speed,
-      },
-    });
+    if (bases.length === 0) {
+      console.log("Le modèle 'Base' n'existe pas ou est déjà vide. Migration inutile.");
+      return;
+    }
 
-    // Mettre à jour le champ statsId dans Pokemon
-    await prisma.pokemon.updateMany({
-      where: { baseId: base.id },
-      data: { statsId: stats.id },
-    });
+    for (const base of bases) {
+      // Créer une nouvelle entrée dans Stats avec les mêmes données
+      const stats = await prisma.stats.create({
+        data: {
+          HPs: base.HPs,
+          Attack: base.Attack,
+          Defense: base.Defense,
+          Sp_Attack: base.Sp_Attack,
+          Sp_Defense: base.Sp_Defense,
+          Speed: base.Speed,
+        },
+      });
 
-    console.log(`Pokémon ID ${base.id} migré avec succès vers Stats.`);
+      // Mettre à jour le champ statsId dans Pokemon
+      await prisma.pokemon.updateMany({
+        where: { baseId: base.id },
+        data: { statsId: stats.id },
+      });
+
+      console.log(`Pokémon ID ${base.id} migré avec succès vers Stats.`);
+    }
+
+    console.log('Migration des données terminée.');
+  } catch (e) {
+    console.log("Le modèle 'Base' n'existe plus ou la table a déjà été supprimée.");
   }
-
-  console.log('Migration des données terminée.');
 }
 
 migrateData()

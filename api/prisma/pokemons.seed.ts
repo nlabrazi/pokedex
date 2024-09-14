@@ -39,7 +39,7 @@ async function main() {
           },
         },
         types: pokemon.types,
-        base: {
+        stats: {
           create: {
             HPs: pokemon.base.HPs,
             Attack: pokemon.base.Attack,
