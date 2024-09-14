@@ -21,7 +21,9 @@ async function migrateData() {
     const bases = await prisma.$queryRaw<Base[]>`SELECT * FROM "Base" LIMIT 1`;
 
     if (bases.length === 0) {
-      console.log("Le modèle 'Base' n'existe pas ou est déjà vide. Migration inutile.");
+      console.log(
+        "Le modèle 'Base' n'existe pas ou est déjà vide. Migration inutile.",
+      );
       return;
     }
 
@@ -49,7 +51,9 @@ async function migrateData() {
 
     console.log('Migration des données terminée.');
   } catch (e) {
-    console.log("Le modèle 'Base' n'existe plus ou la table a déjà été supprimée.");
+    console.log(
+      "Le modèle 'Base' n'existe plus ou la table a déjà été supprimée.",
+    );
   }
 }
 

@@ -22,9 +22,9 @@
     "prisma:migrate:dev": "DATABASE_URL=$DEV_DATABASE_URL npx prisma migrate dev",
     "prisma:seed:dev": "DATABASE_URL=$DEV_DATABASE_URL ts-node prisma/pokemons.seed.ts",
     "prisma:studio:dev": "DATABASE_URL=$DEV_DATABASE_URL npx prisma studio",
-    "prisma:generate:prod": "npx prisma generate",
-    "prisma:migrate:prod": "npx prisma migrate deploy",
-    "prisma:seed:prod": "ts-node prisma/pokemons.seed.ts",
+    "prisma:generate:prod": "NODE_ENV=production && npx prisma generate",
+    "prisma:migrate:prod": "NODE_ENV=production && npx prisma migrate deploy",
+    "prisma:seed:prod": "NODE_ENV=production && ts-node prisma/pokemons.seed.ts",
     "prisma:studio:prod": "npx prisma studio"
   },
   "dependencies": {
