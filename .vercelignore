@@ -1,0 +1,20 @@
+# Ignorer les tests et fichiers de test (global)
+tests/
+test-results/
+playwright-report/
+coverage/
+
+# Ignorer les tests et fichiers de test (API side)
+api/prisma/migrate_base_to_stats.ts
+api/prisma/pokemons.seed.ts
+api/test/
+api/**/*.spec.ts
+
+# Ignorer les fichiers de migrations Prisma
+prisma/migrations/
+
+# Ignorer node_modules (Vercel les gère automatiquement)
+node_modules/
+
+# Ignorer d'autres répertoires non pertinents pour la production
+public/

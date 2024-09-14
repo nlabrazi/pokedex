@@ -34,15 +34,15 @@
         }
       },
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "ui",
       "prefix": "app",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/ng-pokemon-app",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
+            "index": "ui/index.html",
+            "browser": "ui/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -50,7 +50,7 @@
             "assets": [
               {
                 "glob": "**/*",
-                "input": "src/assets",
+                "input": "ui/src/assets",
                 "output": "/assets"
               },
               {
@@ -59,7 +59,7 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "ui/styles.css"
             ],
             "scripts": []
           },

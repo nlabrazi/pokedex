@@ -17,7 +17,7 @@ const compat = new FlatCompat({
 export default [
   {
     // Appliquer cette configuration à tous les fichiers TypeScript du projet
-    files: ['src/**/*.ts'],
+    files: ['ui/src/**/*.ts'],
     languageOptions: {
       parser: typescriptParser, // Utiliser le parser TypeScript
       parserOptions: {

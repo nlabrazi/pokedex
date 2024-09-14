@@ -7,9 +7,9 @@
     "types": []
   },
   "files": [
-    "src/main.ts"
+    "ui/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "ui/**/*.d.ts"
   ]
 }
