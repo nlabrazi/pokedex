@@ -7,9 +7,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "lint": "eslint 'src/**/*.{ts,js}'",
-    "format": "prettier --check 'src/**/*.{ts,js,html,css}'",
-    "format:fix": "prettier --write 'src/**/*.{ts,js,html,css}'"
+    "lint": "eslint 'ui/**/*.{ts,js}'",
+    "format": "prettier --check 'ui/src/**/*.{ts,js,html,css}'",
+    "format:fix": "prettier --write 'ui/src/**/*.{ts,js,html,css}'"
   },
   "private": true,
   "dependencies": {

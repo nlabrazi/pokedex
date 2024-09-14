@@ -67,8 +67,9 @@
 ### Built With
 
 * [![Angular][Angular.io]][Angular-url]
-* [![Javascript][Javascript.js]][Javascript-url]
-* [![Bootstrap][Tailwindcss.com]][Tailwindcss-url]
+* [![TypeScript][TypeScript.js]][TypeScript-url]
+* [![NestJs][NestJs.js]][NestJs-url]
+* [![Tailwindcss][Tailwindcss.com]][Tailwindcss-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -160,7 +161,7 @@ Project Link: [https://github.com/nlabrazi/portfolio](https://github.com/nlabraz
 [license-url]: https://github.com/nlabrazi/portfolio/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/nabil-labrazi
-[product-screenshot]: src/assets/images/screenshot.png
+[product-screenshot]: src/assets/images/screenshot.gif
 [Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
 [Next-url]: https://nextjs.org/
 [Rails.js]: https://img.shields.io/badge/rails-%23CC0000.svg?style=for-the-badge&logo=ruby-on-rails&logoColor=white
@@ -191,3 +192,5 @@ Project Link: [https://github.com/nlabrazi/portfolio](https://github.com/nlabraz
 [TypeScript-url]: https://www.typescriptlang.org/
 [RxJS.js]: https://img.shields.io/badge/rxjs-%23B7178C.svg?style=for-the-badge&logo=reactivex&logoColor=white
 [RxJS-url]: https://rxjs.dev/
+[NestJs.js]: https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white
+[NestJs-url]: https://nestjs.com/
