@@ -2,12 +2,23 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
+// Définir une interface pour "Base"
+interface Base {
+  id: number;
+  HPs: number;
+  Attack: number;
+  Defense: number;
+  Sp_Attack: number;
+  Sp_Defense: number;
+  Speed: number;
+}
+
 async function migrateData() {
   console.log('Démarrage de la migration des données de Base vers Stats...');
 
-  // Vérifier si le modèle "Base" existe encore dans la base de données
   try {
-    const bases = await prisma.$queryRaw`SELECT * FROM "Base" LIMIT 1`;
+    // Caster les résultats de la requête dans le type "Base[]"
+    const bases = await prisma.$queryRaw<Base[]>`SELECT * FROM "Base" LIMIT 1`;
 
     if (bases.length === 0) {
       console.log("Le modèle 'Base' n'existe pas ou est déjà vide. Migration inutile.");
@@ -29,7 +40,7 @@ async function migrateData() {
 
       // Mettre à jour le champ statsId dans Pokemon
       await prisma.pokemon.updateMany({
-        where: { baseId: base.id },
+        where: { id: base.id }, // Remplacer `baseId` par `id`
         data: { statsId: stats.id },
       });
 

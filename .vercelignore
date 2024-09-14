@@ -1,2 +1,11 @@
+# Ignorer les fichiers Prisma inutiles en production
+prisma/migrations/
+prisma/seeds/
+
+# Ignorer les fichiers de tests et les rapports Playwright
+tests/
+test-results/
+playwright-report/
+
+# Ignorer les rapports de couverture de test
 coverage/
-api/coverage/
