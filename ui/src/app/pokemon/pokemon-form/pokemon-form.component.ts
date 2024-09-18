@@ -9,6 +9,7 @@ import {
 } from "@angular/forms";
 import { Router } from "@angular/router";
 import { PokemonService } from "../services/pokemon.service";
+import { ToastrService } from "ngx-toastr";
 import Pokemon from "../../models/pokemon";
 import { PokemonTypeColorPipe } from "../pokemon-type-color.pipe";
 
@@ -26,6 +27,7 @@ import { PokemonTypeColorPipe } from "../pokemon-type-color.pipe";
 })
 export class PokemonFormComponent implements OnInit {
   @Input() pokemon: Pokemon;
+  @Input() closeModal: () => void; // Ajout de la méthode de fermeture
   pokemonTypes: string[] = [];
   types: string[];
 
@@ -35,31 +37,35 @@ export class PokemonFormComponent implements OnInit {
     private pokemonService: PokemonService,
     private router: Router,
     private formBuilder: FormBuilder,
+    private toastr: ToastrService,
   ) {}
 
   ngOnInit() {
     this.pokemonForm = this.formBuilder.group({
       name: [
-        this.pokemon?.name.french,
+        "",
         [Validators.required, Validators.pattern("^[a-zA-Zàéèç]{1,25}$")],
       ],
-      HPs: [
-        this.pokemon?.base.HPs,
-        [Validators.required, Validators.min(0), Validators.max(999)],
-      ],
+      HPs: ["", [Validators.required, Validators.min(0), Validators.max(999)]],
       Attack: [
-        this.pokemon?.base?.Attack,
+        "",
         [Validators.required, Validators.min(0), Validators.max(999)],
       ],
       Defense: [
-        this.pokemon?.base?.Defense,
+        "",
         [Validators.required, Validators.min(0), Validators.max(999)],
       ],
     });
 
-    this.pokemonService.getPokemonTypeList().subscribe((types) => {
-      this.pokemonTypes = types;
-    });
+    // Initialize the form with pokemon data if available
+    if (this.pokemon) {
+      this.pokemonForm.patchValue({
+        name: this.pokemon.name.french,
+        HPs: this.pokemon.stats.HPs,
+        Attack: this.pokemon.stats.Attack,
+        Defense: this.pokemon.stats.Defense,
+      });
+    }
   }
 
   hasType(pokemonType: string): boolean {
@@ -86,8 +92,51 @@ export class PokemonFormComponent implements OnInit {
     return true;
   }
 
-  onSubmit() {
-    console.log("Submit form!");
-    this.router.navigate(["/pokemon", this.pokemon.id]);
+  // Getters pour les contrôles du formulaire
+  get nameControl() {
+    return this.pokemonForm.get("name");
+  }
+
+  get HPsControl() {
+    return this.pokemonForm.get("HPs");
+  }
+
+  get AttackControl() {
+    return this.pokemonForm.get("Attack");
+  }
+
+  get DefenseControl() {
+    return this.pokemonForm.get("Defense");
+  }
+
+  onSubmit(): void {
+    if (this.pokemonForm.valid) {
+      const updatedData = {
+        name: { french: this.pokemonForm.get("name")?.value },
+        stats: {
+          HPs: this.pokemonForm.get("HPs")?.value,
+          Attack: this.pokemonForm.get("Attack")?.value,
+          Defense: this.pokemonForm.get("Defense")?.value,
+        },
+      };
+
+      this.pokemonService.updatePokemon(this.pokemon.id, updatedData).subscribe(
+        () => {
+          this.toastr.success("Pokémon mis à jour avec succès !");
+          if (this.closeModal) {
+            this.closeModal();
+          } else {
+            console.error("closeModal is not defined");
+          }
+        },
+        (error) => {
+          this.toastr.error("Erreur lors de la mise à jour du Pokémon");
+        },
+      );
+    } else {
+      this.toastr.error(
+        "Le formulaire est invalide. Veuillez corriger les erreurs.",
+      );
+    }
   }
 }
