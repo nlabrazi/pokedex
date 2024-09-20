@@ -1,33 +1,31 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, map } from "rxjs";
+import { Observable } from "rxjs";
 import Pokemon from "../../models/pokemon";
 
 @Injectable()
 export class PokemonService {
-  private jsonUrl = "/assets/data/pokemons-list.json";
+  private apiUrl = "http://localhost:3000/api/pokemon"; // URL API NestJS
 
   constructor(private http: HttpClient) {}
 
   getPokemons(): Observable<Pokemon[]> {
-    return this.http.get<Pokemon[]>(this.jsonUrl);
+    return this.http.get<Pokemon[]>(this.apiUrl);
   }
 
-  getPokemonById(id: number): Observable<Pokemon | undefined> {
-    return this.getPokemons().pipe(
-      map((pokemons: Pokemon[]) =>
-        pokemons.find((pokemon) => pokemon.id === id),
-      ),
-    );
+  getPokemonById(id: number): Observable<Pokemon> {
+    return this.http.get<Pokemon>(`${this.apiUrl}/${id}`);
   }
 
-  getPokemonTypeList(): Observable<string[]> {
-    return this.getPokemons().pipe(
-      map((pokemons: Pokemon[]) => {
-        // Extraire les types et les rendre uniques
-        const types = pokemons.flatMap((pokemon) => pokemon.types);
-        return Array.from(new Set(types)); // Renvoie les types uniques
-      }),
-    );
+  // Pour la mise à jour d'un Pokémon
+  // pokemon.service.ts (Front-end Angular)
+  updatePokemon(
+    id: number,
+    data: Partial<{
+      name: { french: string };
+      stats: { HPs: number; Attack: number; Defense: number };
+    }>,
+  ): Observable<Pokemon> {
+    return this.http.put<Pokemon>(`${this.apiUrl}/${id}/edit`, data);
   }
 }

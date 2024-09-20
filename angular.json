@@ -59,7 +59,8 @@
               }
             ],
             "styles": [
-              "ui/styles.css"
+              "ui/styles.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
             "scripts": []
           },

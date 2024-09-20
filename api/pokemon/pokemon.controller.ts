@@ -1,19 +1,43 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, Put, Body } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
+import { Pokemon } from '@prisma/client';
 
-@Controller('pokemons')
+@Controller('pokemon')
 export class PokemonController {
   constructor(private readonly pokemonService: PokemonService) {}
 
-  // Route pour récupérer tous les Pokémons
+  // Récupérer tous les Pokémons
   @Get()
-  async findAll() {
-    return this.pokemonService.findAll();
+  async getAllPokemons(): Promise<Pokemon[]> {
+    return this.pokemonService.getAllPokemons();
   }
 
-  // Route pour récupérer un Pokémon par son ID
+  // Récupérer un Pokémon par son ID
   @Get(':id')
-  async findOne(@Param('id') id: string) {
-    return this.pokemonService.findOne(Number(id));
+  async getPokemonById(@Param('id') id: number): Promise<Pokemon> {
+    return this.pokemonService.getPokemonById(id);
+  }
+
+  // Route pour éditer un Pokémon
+  @Put(':id/edit')
+  async updatePokemon(
+    @Param('id') id: number,
+    @Body()
+    pokemon: Partial<{
+      name: { french: string };
+      stats: { HPs: number; Attack: number; Defense: number };
+    }>,
+  ): Promise<Pokemon> {
+    const updatedData = {
+      name: {
+        french: pokemon.name?.french,
+      },
+      stats: {
+        HPs: pokemon.stats?.HPs,
+        Attack: pokemon.stats?.Attack,
+        Defense: pokemon.stats?.Defense,
+      },
+    };
+    return this.pokemonService.updatePokemon(id, updatedData);
   }
 }

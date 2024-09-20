@@ -1,12 +1,7 @@
 import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { RouterModule, Routes } from "@angular/router";
-import {
-  FormsModule,
-  ReactiveFormsModule,
-  FormGroup,
-  FormBuilder,
-} from "@angular/forms"; // Importer ReactiveFormsModule
+import { FormsModule, ReactiveFormsModule } from "@angular/forms"; // Importer ReactiveFormsModule
 
 import { PokemonService } from "./services/pokemon.service";
 import { ListPokemonComponent } from "./list-pokemon/list-pokemon.component";
