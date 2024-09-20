@@ -23,9 +23,17 @@ jobs:
     - name: Install Playwright Browsers
       run: npx playwright install --with-deps
 
-    # Lancer le serveur local Angular
-    - name: Start the server
-      run: npm run start &
+    # Lancer le serveur NestJS (API)
+    - name: Start the API server (NestJS)
+      run: npm run start:api &
+
+    # Attendre que le serveur API soit prêt
+    - name: Wait for API server to be ready
+      run: npx wait-on http://localhost:3000
+
+    # Lancer le serveur Angular (UI)
+    - name: Start the UI server (Angular)
+      run: npm run start
 
     # Attendre que le serveur soit prêt
     - name: Wait for server to be ready

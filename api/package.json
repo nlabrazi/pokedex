@@ -12,6 +12,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
+    "start:api": "nest start",
     "lint": "eslint -c eslint.config.js 'src/**/*.ts' 'pokemon/**/*.ts' --fix --no-ignore",
     "test": "jest",
     "test:watch": "jest --watch",
